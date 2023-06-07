@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+{% block title %}Jugando...{% endblock %}
+
+{%block main%}
+
+    <main>
+        <div>
+            <p>          </p>
+            <center>
+            <h2>Jugar</h2>
+       
+            {% if resultado == "¡Has acertado!" %}
+                <p>{{ resultado }}</p>
+                <form action="/" method="post">
+                    <button type="submit" class="btn btn-dark">Volver a Jugar</button>
+                </form>
+            {% else %}
+                {% if resultado == "!Perdiste! el número era: " %}
+                    <p>{{ resultado }}</p>
+                    <p>{{ numero_res }}</p>
+
+                    <p>Tus intentos: </p>
+
+                    {% for texto in textos %}
+                        <p>{{ texto }}</p>
+                    {% endfor %}
+
+                    <form action="/" method="post">
+                        <button type="submit" class="btn btn-dark">Volver a Jugar</button>
+                    </form>
+                {% else %}
+
+                    <form action="{{ url_for('adivinar') }}" method="post">
+                        <input type="text" pattern="\d{4}" name="numero" title="Ingresa un número de 4 cifras" required>
+                        <button type="submit" class="btn btn-secondary">Enviar</button>
+                    </form>
+                        <p>{{ numero_no_valido }}</p>
+                        {% for texto in textos %}
+                            <p>{{ texto }}</p>
+                        {% endfor %}
+                {% endif %}
+            {% endif %}
+            </center>
+        </div>
+        
+    </main>
+{% endblock %}

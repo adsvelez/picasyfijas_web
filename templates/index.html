@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% block title %}Jugar{% endblock %}
+
+{%block main%}
+
+    <main>        
+            <div>
+                <center>
+                <h2>Jugar</h2>
+                <table>
+                    <tr>
+                        <td>
+                            <form method="POST" action="/jugar">
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" id="nombre" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p></p>
+                            <label for="nombre">Dificultad: </label>
+                            <p></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="facil" name="dificultad" value="facil" required>
+                                <label for="facil">Fácil - 20 intentos</label><br>
+                                <input class="form-check-input" type="radio" id="medio" name="dificultad" value="medio" checked>
+                                <label for="medio">Medio - 10 intentos</label><br>
+                                <input class="form-check-input" type="radio" id="dificil" name="dificultad" value="dificil">
+                                <label for="dificil">Difícil - 5 intentos</label><br>
+                            </div>
+                            <p></p>
+                            <button type="submit" class="btn btn-dark">Jugar</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                </table> 
+                </center>
+            </div>
+        
+    </main>
+{% endblock %}

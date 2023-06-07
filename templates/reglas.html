@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+{% block title %}Reglas{% endblock %}
+
+{%block main%}
+    <main>
+        <div>
+            <h2>Reglas del juego</h2>
+            <p>
+                <ol>
+                    <li>He seleccionado un número de 4 cifras.</li>
+                    <li>Los 4 números son diferentes, es decir, el numero 1231, no es una opción luego que el número 1 se repite.</li>
+                    <li>Tiene 10 intentos para adivinar el número que yo seleccioné.</li>
+                    <li>Con cada turno dare pistas basado en que tan cerca has estado de adivinar el numero, por ejemplo:
+                    si mi número seleccionado es el '1234', y en tu intento tu dices el número '9253', te dire que tienes:
+                    1 FIJA (que corresponde a que el número '2' esta en el lugar correcto) y 1 PICA (que corresponde a que el 3 está, pero no en esa posición).
+                    Algo que no te dire es cúal de los números has acertado, por tanto para el ejemplo anterior te dire: 'Tienes 1 FIJA y 1 PICA'</li>
+                    <li> Ganaras un punto cada vez que adivines el número que yo seleccioné, pero si no adivinas perderas un punto en la tabla de puntuaciones.</li>
+                </ol>
+            </p>
+            <p>
+                <button onclick="window.location.href = '/';" class="btn btn-secondary">Ir a Jugar</button>
+            </p>
+
+        </div>        
+    </main>
+{% endblock %}

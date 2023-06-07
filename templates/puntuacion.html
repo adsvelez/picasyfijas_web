@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+{% block title %}Puntuación{% endblock %}
+
+{%block main%}
+    <main>
+        <div>
+            <center>
+                <h2>Top jugadores:</h2>
+
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Puntaje</th>
+                    </tr>
+                    <tr></tr>
+                    {% for Nombre, Puntaje in nombres_puntaje.items() %}
+                    <tr>
+                        <td>{{ Nombre }}</td>
+                        <td>{{ Puntaje }}</td>
+                    </tr>
+                    {% endfor %}
+
+            </center>
+        </div>    
+        <div>
+            <center>
+            <p>
+                <button type="button" onclick="window.location.href = '/';" class="btn btn-secondary">Ir a Jugar</button>
+            </p>
+            </center>
+        </div>    
+    </main>
+{% endblock %}
