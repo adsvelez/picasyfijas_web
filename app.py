@@ -51,7 +51,7 @@ def jugar():
 @app.route('/puntuacion')
 def puntuacion():
 
-    cursor.execute("SELECT id, nombre, puntaje FROM jugadores WHERE (nombre, id) IN (SELECT nombre, MAX(id) FROM jugadores GROUP BY nombre) ORDER BY puntaje DESC LIMIT 10")
+    cursor.execute("SELECT t1.id, t1.nombre, t1.puntaje FROM jugadores t1 INNER JOIN (SELECT nombre, MAX(puntaje) AS MaxPuntaje FROM jugadores GROUP BY nombre) t2 ON t1.nombre = t2.nombre AND t1.puntaje = t2.MaxPuntaje ORDER BY t1.puntaje DESC;")
     datos = cursor.fetchall()
 
     nombres_puntaje = {nombre: puntaje for _, nombre, puntaje in datos} #convierte a un diccionario la lista respuesta de la consulta sql
