@@ -17,6 +17,7 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session.pop('numero_aleatorio', None)
@@ -29,13 +30,22 @@ def reglas():
 
 @app.route('/jugar', methods=['POST'])
 def jugar():
+
+
     nombre_jugador = request.form['nombre']
     session['nombre_jugador'] = nombre_jugador  # Almacenar el nombre en la sesión
     session['intentos'] = 0  # Inicializar el contador de intentos
     dificultad = request.form.get('dificultad')
     session['dificultad'] = dificultad
     textos = []
-  
+    
+    if not nombre_jugador.isalpha():
+        abort(400)
+    
+    if not dificultad.isalpha():
+        abort(400)
+
+
     numero_aleatorio = [] # lista donde se guardara el numero seleccionado aleatoriamente
     while len(numero_aleatorio) < 4:
         num = random.randint(0, 9) #condiciona que sean numeros del 0 al 9
@@ -76,6 +86,8 @@ def adivinar():
 
     if request.method == 'POST':
         numero_ingresado = request.form['numero']
+        if not numero_ingresado.isdigit() or len(numero_ingresado) != 4:
+            abort(400)
 
         lista_intento = list(numero_ingresado)
         lista_intento = [int(elemento) for elemento in lista_intento]
